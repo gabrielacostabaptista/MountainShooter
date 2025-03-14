@@ -4,6 +4,8 @@ import pygame.image
 from pygame import Surface, Rect
 from pygame.font import Font
 
+from code.Const import WIN_WIDTH, WIN_HEIGHT, COLOR_ORANGE, MENU_0PTION, COLOR_WHITE
+
 
 class Menu:
     def __init__(self, window):
@@ -14,9 +16,16 @@ class Menu:
     def run(self, ):
         pygame.mixer_music.load('./asset/Menu.mp3')  # apenas carregar a musica
         pygame.mixer_music.play(-1)  # para tocar a musica e manter o loop (-1)
+
         while True:
             self.window.blit(source=self.surf, dest=self.rect)  # imagem no retangulo
+            self.menu_text(text_size=50, text="Mountain", text_color=(COLOR_ORANGE), text_center_pos=((WIN_WIDTH / 2), 70))
+            self.menu_text(text_size =50, text="Shooter", text_color=(COLOR_ORANGE), text_center_pos=((WIN_WIDTH / 2), 120))
+
+            for i in range(len(MENU_0PTION)):
+                self.menu_text(text_size =20,text=MENU_0PTION[i], text_color=(COLOR_WHITE), text_center_pos=((WIN_WIDTH / 2), 170 + 30 * i))
             pygame.display.flip()
+
             #Fechar a janela
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
